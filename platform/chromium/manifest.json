@@ -9,48 +9,52 @@
       "32": "img/icon_32.png",
       "64": "img/icon_64.png"
     },
-    "default_title": "uBlock Origin",
-    "default_popup": "popup-fenix.html"
+    "default_popup": "popup-fenix.html",
+    "default_title": "uBlock Origin"
   },
   "commands": {
-    "launch-element-zapper": {
-      "description": "__MSG_popupTipZapper__"
-    },
     "launch-element-picker": {
-      "description": "__MSG_popupTipPicker__"
+      "description": "picker"
+    },
+    "launch-element-zapper": {
+      "description": "zapper"
     },
     "launch-logger": {
-      "description": "__MSG_popupTipLog__"
+      "description": "logger"
     },
     "open-dashboard": {
-      "description": "__MSG_popupTipDashboard__"
+      "description": "dashboard"
     },
     "relax-blocking-mode": {
-      "description": "__MSG_relaxBlockingMode__"
+      "description": "relax"
     },
     "toggle-cosmetic-filtering": {
-      "description": "__MSG_toggleCosmeticFiltering__"
+      "description": "cosmetic"
     },
     "toggle-javascript": {
-      "description": "__MSG_toggleJavascript__"
+      "description": "javascript"
     }
   },
   "content_scripts": [
     {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
+      "all_frames": true,
       "js": [
         "/js/vapi.js",
         "/js/vapi-client.js",
         "/js/contentscript.js"
       ],
-      "all_frames": true,
       "match_about_blank": true,
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
       "run_at": "document_start"
     },
     {
+      "all_frames": false,
+      "js": [
+        "/js/scriptlets/subscriber.js"
+      ],
       "matches": [
         "https://easylist.to/*",
         "https://*.fanboy.co.nz/*",
@@ -59,41 +63,36 @@
         "https://github.com/*",
         "https://*.github.io/*"
       ],
-      "js": [
-        "/js/scriptlets/subscriber.js"
-      ],
-      "run_at": "document_idle",
-      "all_frames": false
+      "run_at": "document_idle"
     },
     {
+      "all_frames": false,
+      "js": [
+        "/js/scriptlets/updater.js"
+      ],
       "matches": [
         "https://github.com/uBlockOrigin/*",
         "https://ublockorigin.github.io/*",
         "https://*.reddit.com/r/uBlockOrigin/*"
       ],
-      "js": [
-        "/js/scriptlets/updater.js"
-      ],
-      "run_at": "document_idle",
-      "all_frames": false
+      "run_at": "document_idle"
     }
   ],
   "content_security_policy": "script-src 'self'; object-src 'self'",
-  "default_locale": "en",
-  "description": "__MSG_extShortDesc__",
+  "description": "uBlock Origin",
   "icons": {
+    "128": "img/icon_128.png",
     "16": "img/icon_16.png",
     "32": "img/icon_32.png",
-    "64": "img/icon_64.png",
-    "128": "img/icon_128.png"
+    "64": "img/icon_64.png"
   },
   "incognito": "split",
   "manifest_version": 2,
   "minimum_chrome_version": "93.0",
   "name": "uBlock Origin",
   "options_ui": {
-    "page": "dashboard.html",
-    "open_in_tab": true
+    "open_in_tab": true,
+    "page": "dashboard.html"
   },
   "permissions": [
     "alarms",
@@ -107,11 +106,11 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "short_name": "uBlock₀",
+  "short_name": "uBlock\u2080",
   "storage": {
     "managed_schema": "managed_storage.json"
   },
-  "version": "1.15.11.0",
+  "version": "1.75.0",
   "web_accessible_resources": [
     "/web_accessible_resources/*"
   ]
