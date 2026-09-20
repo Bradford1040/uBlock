@@ -20,7 +20,9 @@ cp platform/chromium/*.html $DES/
 cp platform/chromium/*.json $DES/
 
 # Chrome store-specific
-cp -R $DES/_locales/nb $DES/_locales/no
+if [ -d $DES/_locales/nb ]; then
+    cp -R $DES/_locales/nb $DES/_locales/no
+fi
 
 echo "*** uBlock0.chromium: Generating meta..."
 python3 tools/make-chromium-meta.py $DES/

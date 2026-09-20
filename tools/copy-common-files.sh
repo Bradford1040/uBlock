@@ -18,7 +18,9 @@ cp -R src/js/scriptlets            $DES/js/
 cp -R src/js/wasm                  $DES/js/
 cp -R src/lib                      $DES/
 cp -R src/web_accessible_resources $DES/
-cp -R src/_locales                 $DES/
+if [ -d src/_locales ]; then
+	cp -R src/_locales             $DES/
+fi
 
 cp src/*.html                      $DES/
 cp platform/common/*.js            $DES/js/
